@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/Bob2100/learn-mongodb/issues"
   },
-  "homepage": "https://github.com/Bob2100/learn-mongodb#readme"
+  "homepage": "https://github.com/Bob2100/learn-mongodb#readme",
+  "devDependencies": {
+    "husky": "^7.0.0",
+    "pretty-quick": "^3.1.3"
+  }
 }
