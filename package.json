@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "doctoc": "doctoc .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install"
   },
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/Bob2100/learn-mongodb#readme",
   "devDependencies": {
+    "doctoc": "^2.1.0",
     "husky": "^7.0.0",
     "pretty-quick": "^3.1.3"
   }
