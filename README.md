@@ -15,7 +15,7 @@ https://www.runoob.com/mongodb/mongodb-tutorial.html
 
 ~/.bash_profile 中添加  
 MONGO_HOME=/usr/local/mongodb
-PATH=$PATH:$MONGO_HOME/bin
+PATH=$PATH:$MONGO_HOME/bin  
 export PATH
 
 然后 source ~/.bash_profile 使之生效
