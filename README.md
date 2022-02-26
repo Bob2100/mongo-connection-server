@@ -11,9 +11,18 @@ https://www.runoob.com/mongodb/mongodb-tutorial.html
 安装目录 /usr/local/mongodb  
 启动文件 /usr/local/etc/mongod.conf
 
+# 添加环境变量
+
+~/.bash_profile 中添加  
+MONGO_HOME=/usr/local/mongodb
+PATH=$PATH:$MONGO_HOME/bin
+export PATH
+
+然后 source ~/.bash_profile 使之生效
+
 # 启动 mongodb
 
-/usr/local/mongodb/bin/mongod --config /usr/local/etc/mongod.conf
+mongod --config /usr/local/etc/mongod.conf
 
 # 查询是否启动
 
