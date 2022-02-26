@@ -8,8 +8,13 @@ https://www.runoob.com/mongodb/mongodb-tutorial.html
 
 # 我的 mongodb
 
-安装目录 /usr/local/mongodb  
+安装目录 /usr/local/mongodb
+
 启动文件 /usr/local/etc/mongod.conf
+
+dbpath=/usr/local/var/mongodb
+logpath=/usr/local/var/log/mongodb/mongo.log
+fork=true
 
 # 添加环境变量
 
