@@ -12,6 +12,9 @@ https://www.runoob.com/mongodb/mongodb-tutorial.html
 启动文件 /usr/local/etc/mongod.conf
 
 # 启动 mongodb
+
 /usr/local/mongodb/bin/mongod --config /usr/local/etc/mongod.conf
+
 # 查询是否启动
+
 ps aux | grep -v grep | grep mongod
