@@ -2,8 +2,8 @@ import utils from '../src/utils'
 import assert = require('assert')
 const { sum } = utils
 
-describe('#hello.js', () => {
-  describe('#sum()', () => {
+describe('utils', () => {
+  describe('sum()', () => {
     it('sum() should return 0', () => {
       assert.strictEqual(sum(), 0)
     })
