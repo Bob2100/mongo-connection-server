@@ -1,8 +1,12 @@
 import utils from '../src/utils'
 import assert = require('assert')
-const { sum } = utils
+const { sum, db } = utils
 
 describe('utils', () => {
+  describe('getClient()', () => {
+    const client = db.getClient()
+    assert.notStrictEqual(client, null)
+  })
   describe('sum()', () => {
     before(function () {
       console.log('before:')

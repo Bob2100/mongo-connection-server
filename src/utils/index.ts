@@ -1,6 +1,6 @@
-// import db from './db.js'
+import db from './db'
 export default {
-  // db,
+  db,
   sum(...rest: number[]): number {
     let sum = 0
     for (let n of rest) {
