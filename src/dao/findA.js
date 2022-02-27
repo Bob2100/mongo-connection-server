@@ -1,9 +1,5 @@
-import { MongoClient } from 'mongodb'
-
-// Replace the uri string with your MongoDB deployment's connection string.
-const uri = 'mongodb://localhost:27017'
-
-const client = new MongoClient(uri)
+import utils from '../utils'
+const client = utils.db.getClient()
 
 async function run() {
   try {
