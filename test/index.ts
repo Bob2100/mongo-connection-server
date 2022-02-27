@@ -1,5 +1,5 @@
 import utils from '../src/utils'
-import { assert } from 'assert'
+import assert = require('assert')
 const { sum } = utils
 
 assert.strictEqual(sum(), 0)
