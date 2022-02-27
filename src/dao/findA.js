@@ -1,4 +1,4 @@
-import utils from '../utils'
+import utils from '../utils/index.js'
 const client = utils.db.getClient()
 
 async function run() {
