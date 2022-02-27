@@ -1,5 +1,5 @@
 import utils from '../src/utils'
-const assert = require('assert')
+import assert = require('assert')
 const { sum } = utils
 
 describe('#hello.js', () => {
