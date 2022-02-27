@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./src/index.js",
     "doctoc": "doctoc README.md",
-    "test": "mocha test/**/**.test.js",
+    "test": "mocha",
     "prepare": "husky install"
   },
   "mocha": {
