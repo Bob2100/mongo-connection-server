@@ -1,10 +1,36 @@
-import dbUtils from '../utils/dbUtils.js'
+import ora from 'ora'
+import { MongoClient } from 'mongodb'
+import dbConfig from '../../config/db.json' assert { type: 'json' }
+let client = null
+
 export default class BaseDao {
-  findOne(db, collection, query, options) {
-    return dbUtils
-      .getClient()
-      .db(db)
-      .collection(collection)
-      .findOne(query, options)
+  async getClient(uri = dbConfig.uri) {
+    if (client) {
+      return client
+    }
+    const spinner = ora(`连接 ${uri} ...\n`)
+    try {
+      client = new MongoClient(uri)
+      spinner.start()
+      await client.connect()
+      spinner.stop()
+      return client
+    } catch (error) {
+      client.close()
+      client = null
+      console.error(error)
+      spinner.stop()
+    }
+    return null
+  }
+  close() {
+    if (client) {
+      client.close()
+      client = null
+    }
+  }
+  async findOne(db, collection, query, options) {
+    const client = await this.getClient()
+    return client.db(db).collection(collection).findOne(query, options)
   }
 }
