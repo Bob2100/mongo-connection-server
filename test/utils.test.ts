@@ -4,26 +4,21 @@ const { sum, db } = utils
 
 describe('utils', () => {
   describe('getClient()', () => {
-    const client = db.getClient()
-    assert.notStrictEqual(client, null)
+    let client = null
+    before(async () => {
+      client = await db.getClient()
+    })
+    after(() => {
+      if (client) {
+        client.close()
+      }
+    })
+
+    it('getClient() should return a client', async () => {
+      assert.notStrictEqual(client, null)
+    })
   })
   describe('sum()', () => {
-    before(function () {
-      console.log('before:')
-    })
-
-    after(function () {
-      console.log('after.')
-    })
-
-    beforeEach(function () {
-      console.log('  beforeEach:')
-    })
-
-    afterEach(function () {
-      console.log('  afterEach.')
-    })
-
     it('sum() should return 0', () => {
       assert.strictEqual(sum(), 0)
     })
