@@ -9,6 +9,11 @@
     "test": "mocha test/**/**.test.ts",
     "prepare": "husky install"
   },
+  "mocha": {
+    "require": [
+      "ts-node/register"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Bob2100/learn-mongodb.git"
@@ -20,6 +25,7 @@
   },
   "homepage": "https://github.com/Bob2100/learn-mongodb#readme",
   "devDependencies": {
+    "@types/mocha": "^9.1.0",
     "doctoc": "^2.1.0",
     "husky": "^7.0.0",
     "mocha": "^9.2.1",
