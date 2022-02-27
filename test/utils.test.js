@@ -1,5 +1,5 @@
-import utils from '../src/utils'
-import assert = require('assert')
+import utils from '../src/utils/index.js'
+import assert from 'assert'
 const { sum, db } = utils
 
 describe('utils', () => {

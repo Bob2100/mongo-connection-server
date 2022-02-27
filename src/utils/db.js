@@ -1,23 +1,24 @@
-// const ora = require('ora')
+import ora from 'ora'
 import { MongoClient } from 'mongodb'
-const uri = 'mongodb://localhost:2701'
-let client: MongoClient = null
+const uri = 'mongodb://localhost:27017'
+let client = null
 
 export default {
-  async getClient(): Promise<MongoClient> {
+  async getClient() {
     if (client) {
       return client
     }
-    // const spinner = ora(`连接${uri} ...`)
+    const spinner = ora(`连接 ${uri} ...\n`)
     try {
       const c = new MongoClient(uri)
-      // spinner.start()
+      spinner.start()
       await c.connect()
-      // spinner.stop()
+      spinner.stop()
       client = c
       return client
     } catch (error) {
-      // spinner.stop()
+      console.error(error)
+      spinner.stop()
     }
     return null
   },
