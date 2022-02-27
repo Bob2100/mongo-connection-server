@@ -1,6 +1,6 @@
 import ora from 'ora'
 import { MongoClient } from 'mongodb'
-import dbConfig from '../../config/db.json' assert { type: 'json' }
+import dbConfig from '../../config/db.js'
 let client = null
 
 export default class BaseDao {
