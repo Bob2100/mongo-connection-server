@@ -8,6 +8,6 @@ export default {
       return client
     }
     client = new MongoClient(uri)
-    return client
+    return client.connect()
   },
 }
