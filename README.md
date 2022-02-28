@@ -12,6 +12,10 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+# node -v
+
+16.14.0
+
 # learn-mongodb
 
 用于记录 mongodb 的学习
