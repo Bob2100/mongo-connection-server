@@ -1,4 +1,4 @@
-export default class BaseDao {
+export default {
   /**
    * 查询一个doc
    * @param db - 数据库名称
@@ -16,5 +16,5 @@ export default class BaseDao {
     collection: string,
     query: Object,
     options: Object
-  ): Promise<Object>
+  ): Promise<Object>,
 }
