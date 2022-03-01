@@ -19,4 +19,12 @@ describe('baseDao', () => {
       assert.notStrictEqual(doc, null)
     })
   })
+  describe('insertOne()', () => {
+    it('insertOne() should return a doc', async () => {
+      const res = await baseDao.insertOne('test', 'fruits', {
+        category: '水果',
+      })
+      assert.notStrictEqual(res, null)
+    })
+  })
 })
