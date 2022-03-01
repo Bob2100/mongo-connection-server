@@ -1,8 +1,7 @@
-import BaseDao from '../src/dao/baseDao.js'
+import baseDao from '../src/dao/baseDao.js'
 import assert from 'assert'
 
-describe('BaseDao', () => {
-  const baseDao = new BaseDao()
+describe('baseDao', () => {
   after(() => {
     baseDao.close()
   })
