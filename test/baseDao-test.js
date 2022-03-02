@@ -34,4 +34,18 @@ describe('baseDao', () => {
       assert.notStrictEqual(insertRes.insertedId, null)
     })
   })
+  describe('deleteOne()', () => {
+    let insertRes = null
+    before(async () => {
+      insertRes = await baseDao.insertOne('test', 'fruits', {
+        category: '水果',
+      })
+    })
+    it('deleteOne() should return a doc with deletedCount 1', async () => {
+      const res = await baseDao.deleteOne('test', 'fruits', {
+        _id: insertRes.insertedId,
+      })
+      assert.strictEqual(res.deletedCount, 1)
+    })
+  })
 })
