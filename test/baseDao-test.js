@@ -22,4 +22,16 @@ describe('baseDao', () => {
       assert.notStrictEqual(doc, null)
     })
   })
+  describe('insertOne()', () => {
+    let insertRes = null
+    after(() => {
+      baseDao.deleteOne('test', 'fruits', { _id: insertRes.insertedId })
+    })
+    it('insertOne() should return a doc with insertedId', async () => {
+      insertRes = await baseDao.insertOne('test', 'fruits', {
+        category: '水果',
+      })
+      assert.notStrictEqual(insertRes.insertedId, null)
+    })
+  })
 })
