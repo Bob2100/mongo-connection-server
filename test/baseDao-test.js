@@ -33,10 +33,12 @@ describe('baseDao', () => {
       const docs = [
         {
           name: '葡萄',
+          price: 10,
           category: '水果',
         },
         {
           name: '白菜',
+          price: 5,
           category: '蔬菜',
         },
       ]
