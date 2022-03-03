@@ -37,6 +37,10 @@ export default {
     const client = await this.getClient()
     return client.db(dbName).collection(colName).insertOne(doc)
   },
+  async insertMany(dbName, colName, docs, options) {
+    const client = await this.getClient()
+    return client.db(dbName).collection(colName).insertMany(docs, options)
+  },
   async deleteOne(dbName, colName, query) {
     const client = await this.getClient()
     return client.db(dbName).collection(colName).deleteOne(query)

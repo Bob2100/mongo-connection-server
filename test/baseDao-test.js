@@ -22,16 +22,24 @@ describe('baseDao', () => {
       assert.notStrictEqual(doc, null)
     })
   })
-  describe('insertOne()', () => {
+  describe('insertMany()', () => {
     let insertRes = null
-    after(() => {
-      baseDao.deleteOne('test', 'fruits', { _id: insertRes.insertedId })
-    })
-    it('insertOne() should return a doc with insertedId', async () => {
-      insertRes = await baseDao.insertOne('test', 'fruits', {
-        category: '水果',
-      })
-      assert.notStrictEqual(insertRes.insertedId, null)
+    // after(() => {
+    //   baseDao.deleteOne('test', 'fruits', { _id: insertRes.insertedId })
+    // })
+    it('insertMany() should return a doc with right insertedCount', async () => {
+      const docs = [
+        {
+          name: '葡萄',
+          category: '水果',
+        },
+        {
+          name: '白菜',
+          category: '蔬菜',
+        },
+      ]
+      insertRes = await baseDao.insertMany('test', 'fruits', docs)
+      assert.strictEqual(insertRes.insertedCount, 2)
     })
   })
   describe('deleteOne()', () => {
