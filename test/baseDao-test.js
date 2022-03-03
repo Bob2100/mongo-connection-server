@@ -51,6 +51,7 @@ describe('baseDao', () => {
         projection: { _id: 0, name: 1, price: 1 },
       }
       const docs = await baseDao.find('test', 'fruits', query, options)
+      console.log(docs)
       assert.strictEqual(docs.length, 2)
     })
   })
