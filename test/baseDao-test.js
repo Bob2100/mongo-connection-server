@@ -24,9 +24,11 @@ describe('baseDao', () => {
   })
   describe('insertMany()', () => {
     let insertRes = null
-    // after(() => {
-    //   baseDao.deleteOne('test', 'fruits', { _id: insertRes.insertedId })
-    // })
+    after(() => {
+      baseDao.deleteMany('test', 'fruits', {
+        _id: { $in: Object.values(insertRes.insertedIds) },
+      })
+    })
     it('insertMany() should return a doc with right insertedCount', async () => {
       const docs = [
         {
