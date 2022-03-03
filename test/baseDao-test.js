@@ -58,4 +58,26 @@ describe('baseDao', () => {
       assert.strictEqual(res.deletedCount, 1)
     })
   })
+  describe('deleteMany()', () => {
+    let insertRes = null
+    before(async () => {
+      const docs = [
+        {
+          name: '葡萄',
+          category: '水果',
+        },
+        {
+          name: '白菜',
+          category: '蔬菜',
+        },
+      ]
+      insertRes = await baseDao.insertMany('test', 'fruits', docs)
+    })
+    it('deleteMany() should return a doc with right deletedCount ', async () => {
+      const res = await baseDao.deleteMany('test', 'fruits', {
+        _id: { $in: Object.values(insertRes.insertedIds) },
+      })
+      assert.strictEqual(res.deletedCount, 2)
+    })
+  })
 })
