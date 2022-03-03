@@ -35,7 +35,7 @@ export default {
   },
   async find(dbName, colName, query, options) {
     const client = await this.getClient()
-    return client.db(dbName).collection(colName).find(query, options)
+    return client.db(dbName).collection(colName).find(query, options).toArray()
   },
   async insertOne(dbName, colName, doc) {
     const client = await this.getClient()

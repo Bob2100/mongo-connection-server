@@ -22,6 +22,38 @@ describe('baseDao', () => {
       assert.notStrictEqual(doc, null)
     })
   })
+  describe('find()', () => {
+    let insertRes = null
+    before(async () => {
+      const docs = [
+        {
+          name: '火龙果',
+          category: '水果',
+          price: 1000,
+        },
+        {
+          name: '龙眼',
+          category: '水果',
+          price: 800,
+        },
+      ]
+      insertRes = await baseDao.insertMany('test', 'fruits', docs)
+    })
+    after(() => {
+      baseDao.deleteMany('test', 'fruits', {
+        _id: { $in: Object.values(insertRes.insertedIds) },
+      })
+    })
+    it('find() should return 2 docs', async () => {
+      const query = { price: { $gt: 500 } }
+      const options = {
+        sort: { price: 1 },
+        projection: { _id: 0, name: 1, price: 1 },
+      }
+      const docs = await baseDao.find('test', 'fruits', query, options)
+      assert.strictEqual(docs.length, 2)
+    })
+  })
   describe('insertMany()', () => {
     let insertRes = null
     after(() => {
