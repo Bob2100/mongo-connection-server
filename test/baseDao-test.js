@@ -51,8 +51,24 @@ describe('baseDao', () => {
         projection: { _id: 0, name: 1, price: 1 },
       }
       const docs = await baseDao.find('test', 'fruits', query, options)
-      console.log(docs)
       assert.strictEqual(docs.length, 2)
+    })
+  })
+  describe('insertOne()', () => {
+    let insertRes = null
+    after(() => {
+      baseDao.deleteMany('test', 'fruits', {
+        _id: insertRes.insertedId,
+      })
+    })
+    it('insertOne() should return a doc with insertedId', async () => {
+      const doc = {
+        name: '葡萄',
+        price: 10,
+        category: '水果',
+      }
+      insertRes = await baseDao.insertOne('test', 'fruits', doc)
+      assert.notStrictEqual(insertRes.insertedId, null)
     })
   })
   describe('insertMany()', () => {
