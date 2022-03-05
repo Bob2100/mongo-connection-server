@@ -7,6 +7,7 @@
     "start": "node ./src/index.js",
     "doctoc": "doctoc README.md",
     "test": "mocha",
+    "build": "tsc",
     "prepare": "husky install"
   },
   "mocha": {
