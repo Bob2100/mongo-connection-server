@@ -141,4 +141,35 @@ describe('baseDao', () => {
       assert.strictEqual(res.deletedCount, 2)
     })
   })
+  describe('updateOne()', () => {
+    let upsertRes = null
+    const doc = {
+      name: '_苹果',
+      category: '水果',
+      price: 10,
+    }
+    after(() => {
+      baseDao.deleteOne('test', 'fruits', {
+        _id: upsertRes.upsertedId,
+      })
+    })
+    it('updateOne() should update the price ', async () => {
+      const query = { name: doc.name }
+      const updateDoc = {
+        $set: {
+          price: 20,
+        },
+      }
+      const options = { upsert: true }
+      upsertRes = await baseDao.updateOne(
+        'test',
+        'fruits',
+        query,
+        updateDoc,
+        options
+      )
+      const findRes = await baseDao.findOne('test', 'fruits', query)
+      assert.strictEqual(findRes.price, 20)
+    })
+  })
 })
