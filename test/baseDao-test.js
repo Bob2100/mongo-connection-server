@@ -90,6 +90,16 @@ describe('baseDao', () => {
           price: 5,
           category: '蔬菜',
         },
+        {
+          name: '黄瓜',
+          price: 5,
+          category: '蔬菜',
+        },
+        {
+          name: '西红柿',
+          price: 5,
+          category: '蔬菜',
+        },
       ]
       insertRes = await baseDao.insertMany('test', 'fruits', docs)
       assert.strictEqual(insertRes.insertedCount, 2)
