@@ -56,11 +56,11 @@ describe('baseDao', () => {
   })
   describe('insertOne()', () => {
     let insertRes = null
-    after(() => {
-      baseDao.deleteMany('test', 'fruits', {
-        _id: insertRes.insertedId,
-      })
-    })
+    // after(() => {
+    //   baseDao.deleteMany('test', 'fruits', {
+    //     _id: insertRes.insertedId,
+    //   })
+    // })
     it('insertOne() should return a doc with insertedId', async () => {
       const doc = {
         name: '葡萄',

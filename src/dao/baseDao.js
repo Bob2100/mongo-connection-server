@@ -1,7 +1,7 @@
 import ora from 'ora'
 import { MongoClient } from 'mongodb'
 import dbConfig from '../../config/db.js'
-import defaultData from './defaultData'
+import defaultData from './defaultData.js'
 
 let client = null
 
