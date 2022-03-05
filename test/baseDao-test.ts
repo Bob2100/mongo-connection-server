@@ -1,4 +1,4 @@
-import baseDao from '../src/dao/baseDao.js'
+import baseDao from '../src/dao/baseDao'
 import assert from 'assert'
 
 describe('baseDao', () => {
