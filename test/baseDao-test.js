@@ -63,7 +63,7 @@ describe('baseDao', () => {
     })
     it('insertOne() should return a doc with insertedId', async () => {
       const doc = {
-        name: '葡萄',
+        name: '_葡萄',
         price: 10,
         category: '水果',
       }
@@ -81,28 +81,28 @@ describe('baseDao', () => {
     it('insertMany() should return a doc with right insertedCount', async () => {
       const docs = [
         {
-          name: '葡萄',
+          name: '_葡萄',
           price: 10,
           category: '水果',
         },
         {
-          name: '白菜',
+          name: '_白菜',
           price: 5,
           category: '蔬菜',
         },
         {
-          name: '黄瓜',
+          name: '_黄瓜',
           price: 5,
           category: '蔬菜',
         },
         {
-          name: '西红柿',
+          name: '_西红柿',
           price: 5,
           category: '蔬菜',
         },
       ]
       insertRes = await baseDao.insertMany('test', 'fruits', docs)
-      assert.strictEqual(insertRes.insertedCount, 2)
+      assert.strictEqual(insertRes.insertedCount, docs.length)
     })
   })
   describe('deleteOne()', () => {
@@ -124,11 +124,11 @@ describe('baseDao', () => {
     before(async () => {
       const docs = [
         {
-          name: '葡萄',
+          name: '_葡萄',
           category: '水果',
         },
         {
-          name: '白菜',
+          name: '_白菜',
           category: '蔬菜',
         },
       ]
