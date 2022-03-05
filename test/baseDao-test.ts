@@ -1,5 +1,5 @@
 import baseDao from '../src/dao/baseDao'
-import assert from 'assert'
+import * as assert from 'assert'
 
 describe('baseDao', () => {
   after(() => {
