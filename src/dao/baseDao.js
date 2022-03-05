@@ -1,6 +1,8 @@
 import ora from 'ora'
 import { MongoClient } from 'mongodb'
 import dbConfig from '../../config/db.js'
+import defaultData from './defaultData'
+
 let client = null
 
 export default {
@@ -14,6 +16,7 @@ export default {
       spinner.start()
       await client.connect()
       spinner.stop()
+      defaultData.init(client)
       return client
     } catch (error) {
       client.close()
