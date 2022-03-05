@@ -1,5 +1,6 @@
 import baseDao from '../src/dao/baseDao.js'
 import * as assert from 'assert'
+import { Fruits } from '../src/model/fruits.js'
 
 describe('baseDao', () => {
   after(() => {
@@ -25,7 +26,7 @@ describe('baseDao', () => {
   describe('find()', () => {
     let insertRes = null
     before(async () => {
-      const docs = [
+      const docs: Fruits[] = [
         {
           name: '火龙果',
           category: '水果',
