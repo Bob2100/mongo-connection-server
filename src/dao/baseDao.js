@@ -56,4 +56,11 @@ export default {
     const client = await this.getClient()
     return client.db(dbName).collection(colName).deleteMany(query)
   },
+  async updateOne(dbName, colName, query) {
+    const client = await this.getClient()
+    return client
+      .db(dbName)
+      .collection(colName)
+      .updateOne(query, updateDoc, options)
+  },
 }
