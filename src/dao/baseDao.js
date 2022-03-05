@@ -63,4 +63,11 @@ export default {
       .collection(colName)
       .updateOne(query, updateDoc, options)
   },
+  async findOneAndUpdate(dbName, colName, query, updateDoc, options) {
+    const client = await this.getClient()
+    return client
+      .db(dbName)
+      .collection(colName)
+      .findOneAndUpdate(query, updateDoc, options)
+  },
 }
