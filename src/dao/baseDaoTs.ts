@@ -26,13 +26,6 @@ async function getClient(uri = dbConfig.uri): Promise<MongoClient> {
   return null
 }
 
-export interface Fruits {
-  _id: ObjectId
-  name: string
-  price: number
-  category: '水果' | '蔬菜'
-}
-
 async function findOne<T>(
   dbName: string,
   colName: string,
