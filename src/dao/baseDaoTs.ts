@@ -1,12 +1,12 @@
 import ora from 'ora'
 import {
   FindOptions,
+  InsertManyResult,
   InsertOneResult,
   MongoClient,
   OptionalUnlessRequiredId,
 } from 'mongodb'
 import dbConfig from '../../config/db.js'
-import defaultData from './defaultData.js'
 
 let client: MongoClient = null
 
@@ -33,47 +33,60 @@ function getClient(uri = dbConfig.uri): Promise<MongoClient> {
   })
 }
 
-async function findOne<T>(
+function findOne<T>(
   dbName: string,
   colName: string,
   filter: T,
   options?: FindOptions
 ): Promise<T> {
-  const client = await getClient()
-  return await client
-    .db(dbName)
-    .collection<T>(colName)
-    .findOne<T>(filter, options)
+  return new Promise((resolve) => {
+    getClient().then((client) => {
+      resolve(
+        client.db(dbName).collection<T>(colName).findOne<T>(filter, options)
+      )
+    })
+  })
 }
 
-async function find<T>(
+function find<T>(
   dbName: string,
   colName: string,
   filter: T,
   options?: FindOptions
 ): Promise<T[]> {
-  const client = await getClient()
-  return await client
-    .db(dbName)
-    .collection<T>(colName)
-    .find<T>(filter, options)
-    .toArray()
+  return new Promise((resolve) => {
+    getClient().then((client) => {
+      resolve(
+        client
+          .db(dbName)
+          .collection<T>(colName)
+          .find<T>(filter, options)
+          .toArray()
+      )
+    })
+  })
 }
-async function insertOne<T>(
+function insertOne<T>(
   dbName: string,
   colName: string,
   doc: OptionalUnlessRequiredId<T>
 ): Promise<InsertOneResult<T>> {
-  const client = await getClient()
-  return await client.db(dbName).collection<T>(colName).insertOne(doc)
+  return new Promise((resolve) => {
+    getClient().then((client) => {
+      resolve(client.db(dbName).collection<T>(colName).insertOne(doc))
+    })
+  })
 }
-async function insertMany<T>(
+function insertMany<T>(
   dbName: string,
   colName: string,
-  doc: OptionalUnlessRequiredId<T>
-): Promise<InsertOneResult<T>> {
-  const client = await getClient()
-  return await client.db(dbName).collection<T>(colName).insertOne(doc)
+  docs: OptionalUnlessRequiredId<T>[]
+): Promise<InsertManyResult<T>> {
+  return new Promise((resolve) => {
+    getClient().then((client) => {
+      resolve(client.db(dbName).collection<T>(colName).insertMany(docs))
+    })
+  })
 }
 
 function close() {
@@ -89,5 +102,6 @@ const baseDaoTs = {
   findOne,
   find,
   insertOne,
+  insertMany,
 }
 export default baseDaoTs
