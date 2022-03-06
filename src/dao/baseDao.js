@@ -32,7 +32,7 @@ export default {
       client = null
     }
   },
-  async findOne(dbName, colName, query, options?) {
+  async findOne(dbName, colName, query, options) {
     const client = await this.getClient()
     return client.db(dbName).collection(colName).findOne(query, options)
   },
@@ -44,7 +44,7 @@ export default {
     const client = await this.getClient()
     return client.db(dbName).collection(colName).insertOne(doc)
   },
-  async insertMany(dbName, colName, docs, options?) {
+  async insertMany(dbName, colName, docs, options) {
     const client = await this.getClient()
     return client.db(dbName).collection(colName).insertMany(docs, options)
   },
