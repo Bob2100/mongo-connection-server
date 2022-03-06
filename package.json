@@ -7,7 +7,7 @@
     "start": "npm run build && node built/src",
     "doctoc": "doctoc README.md",
     "test": "npm run build && mocha built/test",
-    "build": "tsc",
+    "build": "rm -r built && tsc",
     "prepare": "husky install"
   },
   "mocha": {
