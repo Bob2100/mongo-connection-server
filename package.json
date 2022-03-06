@@ -4,9 +4,9 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "start": "node ./src/index.js",
+    "start": "npm run build && node built/src",
     "doctoc": "doctoc README.md",
-    "test": "mocha built/test",
+    "test": "npm run build && mocha built/test",
     "build": "tsc",
     "prepare": "husky install"
   },
