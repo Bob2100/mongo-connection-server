@@ -1,4 +1,4 @@
-import baseDao from '../src/dao/baseDao_ss.js'
+import baseDao from '../src/dao/baseDao.js'
 import * as assert from 'assert'
 import { Fruits } from '../src/model/fruits.js'
 
