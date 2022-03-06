@@ -1,5 +1,14 @@
 import baseDao from '../src/dao/baseDaoTs.js'
 import * as assert from 'assert'
+import { ObjectId } from 'mongodb'
+
+interface Fruits {
+  _id?: ObjectId
+  name: string
+  price?: number
+  category?: string
+}
+
 describe('baseDao', () => {
   after(() => {
     baseDao.close()
