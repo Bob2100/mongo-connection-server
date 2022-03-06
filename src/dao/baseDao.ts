@@ -176,7 +176,7 @@ function close() {
   }
 }
 
-const baseDaoTs = {
+const baseDao = {
   getClient,
   close,
   findOne,
@@ -189,4 +189,4 @@ const baseDaoTs = {
   deleteOne,
   deleteMany,
 }
-export default baseDaoTs
+export default baseDao

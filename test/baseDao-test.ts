@@ -1,6 +1,13 @@
 import baseDao from '../src/dao/baseDao.js'
 import * as assert from 'assert'
-import { Fruits } from '../src/model/fruits.js'
+import { FindOneAndUpdateOptions, FindOptions, ObjectId } from 'mongodb'
+
+interface Fruits {
+  _id?: ObjectId
+  name: string
+  price?: number
+  category?: string
+}
 
 describe('baseDao', () => {
   after(() => {
@@ -47,7 +54,7 @@ describe('baseDao', () => {
     })
     it('find() should return 2 docs', async () => {
       const query = { price: { $gt: 500 } }
-      const options = {
+      const options: FindOptions = {
         sort: { price: 1 },
         projection: { _id: 0, name: 1, price: 1 },
       }
@@ -169,7 +176,7 @@ describe('baseDao', () => {
         updateDoc,
         options
       )
-      const findRes = await baseDao.findOne('test', 'fruits', query)
+      const findRes = await baseDao.findOne<Fruits>('test', 'fruits', query)
       assert.strictEqual(findRes.price, 20)
     })
   })
@@ -188,11 +195,11 @@ describe('baseDao', () => {
           price: 20,
         },
       }
-      const options = {
+      const options: FindOneAndUpdateOptions = {
         upsert: true,
         returnDocument: 'after',
       }
-      const upsertRes = await baseDao.findOneAndUpdate(
+      const upsertRes = await baseDao.findOneAndUpdate<Fruits>(
         'test',
         'fruits',
         query,
