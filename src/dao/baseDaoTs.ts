@@ -2,12 +2,15 @@ import ora from 'ora'
 import {
   DeleteResult,
   Filter,
+  FindOneAndUpdateOptions,
   FindOptions,
   InsertManyResult,
   InsertOneResult,
+  ModifyResult,
   MongoClient,
   OptionalUnlessRequiredId,
   UpdateFilter,
+  UpdateOptions,
   UpdateResult,
 } from 'mongodb'
 import { Document } from 'bson'
@@ -97,12 +100,34 @@ function updateOne<T>(
   dbName: string,
   colName: string,
   filter: Filter<T>,
-  update: Partial<T> | UpdateFilter<T>
+  update: Partial<T> | UpdateFilter<T>,
+  options?: UpdateOptions
 ): Promise<UpdateResult> {
   return new Promise((resolve) => {
     getClient().then((client) => {
       resolve(
-        client.db(dbName).collection<T>(colName).updateOne(filter, update)
+        client
+          .db(dbName)
+          .collection<T>(colName)
+          .updateOne(filter, update, options)
+      )
+    })
+  })
+}
+function findOneAndUpdate<T>(
+  dbName: string,
+  colName: string,
+  filter: Filter<T>,
+  update: UpdateFilter<T>,
+  options?: FindOneAndUpdateOptions
+): Promise<ModifyResult<T>> {
+  return new Promise((resolve) => {
+    getClient().then((client) => {
+      resolve(
+        client
+          .db(dbName)
+          .collection<T>(colName)
+          .findOneAndUpdate(filter, update, options)
       )
     })
   })
@@ -159,6 +184,7 @@ const baseDaoTs = {
   insertOne,
   insertMany,
   updateOne,
+  findOneAndUpdate,
   updateMany,
   deleteOne,
   deleteMany,
