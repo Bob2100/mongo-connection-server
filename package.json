@@ -6,9 +6,9 @@
   "scripts": {
     "start": "npm run build && node built/src",
     "doctoc": "doctoc README.md",
-    "test": "npm run build && mocha built/test",
-    "build": "rm -r built && tsc",
-    "prepare": "rm -r .husky/_ && husky install"
+    "test": "npm run build && npx mocha built/test",
+    "build": "npx tsc",
+    "prepare": "husky install"
   },
   "mocha": {
     "timeout": 60000
