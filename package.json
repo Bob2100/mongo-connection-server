@@ -6,8 +6,8 @@
   "scripts": {
     "start": "npm run build && node built/src",
     "doctoc": "doctoc README.md",
-    "test": "npm run build && npx mocha built/test",
-    "build": "npx tsc",
+    "test": "npm run build && mocha built/test",
+    "build": "tsc",
     "prepare": "husky install"
   },
   "mocha": {
