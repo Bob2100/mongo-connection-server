@@ -16,6 +16,20 @@ import {
 import { Document } from 'bson'
 import dbConfig from '../../config/db.js'
 
+export default {
+  getClient,
+  close,
+  findOne,
+  find,
+  insertOne,
+  insertMany,
+  updateOne,
+  findOneAndUpdate,
+  updateMany,
+  deleteOne,
+  deleteMany,
+}
+
 let client: MongoClient = null
 
 function getClient(uri = dbConfig.uri): Promise<MongoClient> {
@@ -175,18 +189,3 @@ function close() {
     client = null
   }
 }
-
-const baseDao = {
-  getClient,
-  close,
-  findOne,
-  find,
-  insertOne,
-  insertMany,
-  updateOne,
-  findOneAndUpdate,
-  updateMany,
-  deleteOne,
-  deleteMany,
-}
-export default baseDao
