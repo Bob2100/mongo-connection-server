@@ -12,6 +12,7 @@ import {
   UpdateFilter,
   UpdateOptions,
   UpdateResult,
+  WithoutId,
 } from 'mongodb'
 import { Document } from 'bson'
 import dbConfig from '../../config/db.js'
@@ -30,8 +31,23 @@ export default {
   deleteMany,
 }
 
-let client: MongoClient = null
+function replaceOne<T>(
+  dbName: string,
+  colName: string,
+  filter: Filter<T>,
+  replacement: WithoutId<T>,
+  options?: UpdateOptions
+): Promise<Document | UpdateResult> {
+  return new Promise((resolve) => {
+    getClient().then((client) => {
+      resolve(
+        client.db(dbName).collection<T>(colName).replaceOne(filter, replacement)
+      )
+    })
+  })
+}
 
+let client: MongoClient = null
 function getClient(uri = dbConfig.uri): Promise<MongoClient> {
   return new Promise((resolve, reject) => {
     if (client) {
