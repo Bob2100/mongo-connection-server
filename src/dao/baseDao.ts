@@ -29,6 +29,15 @@ export default {
   updateMany,
   deleteOne,
   deleteMany,
+  drop,
+}
+
+function drop(dbName: string, colName: string): Promise<boolean> {
+  return new Promise((resolve) => {
+    getClient().then((client) => {
+      resolve(client.db(dbName).collection(colName).drop())
+    })
+  })
 }
 
 function replaceOne<T>(
