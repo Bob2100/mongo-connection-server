@@ -30,6 +30,7 @@ export default {
   deleteOne,
   deleteMany,
   drop,
+  replaceOne,
 }
 
 async function drop(dbName: string, colName: string): Promise<boolean> {
@@ -37,20 +38,17 @@ async function drop(dbName: string, colName: string): Promise<boolean> {
   return await client.db(dbName).collection(colName).drop()
 }
 
-function replaceOne<T>(
+async function replaceOne<T>(
   dbName: string,
   colName: string,
   filter: Filter<T>,
-  replacement: WithoutId<T>,
-  options?: UpdateOptions
+  replacement: WithoutId<T>
 ): Promise<Document | UpdateResult> {
-  return new Promise((resolve) => {
-    getClient().then((client) => {
-      resolve(
-        client.db(dbName).collection<T>(colName).replaceOne(filter, replacement)
-      )
-    })
-  })
+  const client = await getClient()
+  return await client
+    .db(dbName)
+    .collection<T>(colName)
+    .replaceOne(filter, replacement)
 }
 
 let client: MongoClient = null
