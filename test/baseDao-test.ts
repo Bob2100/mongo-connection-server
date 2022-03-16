@@ -13,6 +13,19 @@ describe('baseDao', () => {
   after(() => {
     baseDao.close()
   })
+  describe('drop()', () => {
+    const dbName = 'test'
+    const colName = '_fruits'
+    before(async () => {
+      await baseDao.insertOne(dbName, colName, {
+        category: '水果',
+      })
+    })
+    it('drop() should return true', async () => {
+      const res = await baseDao.drop(dbName, colName)
+      assert.strictEqual(res, true)
+    })
+  })
   describe('findOne()', () => {
     let insertRes = null
     before(async () => {
