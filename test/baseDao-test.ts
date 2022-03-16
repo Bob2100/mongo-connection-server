@@ -193,6 +193,32 @@ describe('baseDao', () => {
       assert.strictEqual(findRes.price, 20)
     })
   })
+  describe('replaceOne()', () => {
+    let updateRes = null
+    const doc = {
+      name: '_苹果',
+      category: '水果',
+      price: 10,
+    }
+    after(() => {
+      baseDao.deleteOne('test', 'fruits', {
+        _id: updateRes.upsertedId,
+      })
+    })
+    it('replaceOne() should update the price ', async () => {
+      const query = { name: doc.name }
+      const options = { upsert: true }
+      updateRes = await baseDao.replaceOne(
+        'test',
+        'fruits',
+        query,
+        doc,
+        options
+      )
+      const findRes = await baseDao.findOne<Fruits>('test', 'fruits', query)
+      assert.strictEqual(findRes.price, 20)
+    })
+  })
   describe('findOneAndUpdate()', () => {
     let insertRes = null
     const query = { name: '_苹果' }

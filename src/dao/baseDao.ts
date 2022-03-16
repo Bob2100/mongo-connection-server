@@ -9,6 +9,7 @@ import {
   ModifyResult,
   MongoClient,
   OptionalUnlessRequiredId,
+  ReplaceOptions,
   UpdateFilter,
   UpdateOptions,
   UpdateResult,
@@ -42,13 +43,14 @@ async function replaceOne<T>(
   dbName: string,
   colName: string,
   filter: Filter<T>,
-  replacement: WithoutId<T>
+  replacement: WithoutId<T>,
+  options: ReplaceOptions
 ): Promise<Document | UpdateResult> {
   const client = await getClient()
   return await client
     .db(dbName)
     .collection<T>(colName)
-    .replaceOne(filter, replacement)
+    .replaceOne(filter, replacement, options)
 }
 
 let client: MongoClient = null
