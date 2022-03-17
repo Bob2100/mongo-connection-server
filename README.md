@@ -44,3 +44,9 @@ npm install
 # 运行测试
 
 npm test
+
+# 版本日志
+
+- v1.0.0  
+  提供如下数据库操作方法：  
+  getClient, close, findOne, find, insertOne, insertMany, updateOne, findOneAndUpdate, updateMany, deleteOne, deleteMany
