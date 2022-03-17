@@ -47,6 +47,9 @@ npm test
 
 # 版本日志
 
+- v1.1.0
+  - 增加 drop 方法，用于删除一个集合
+  - 增加 replaceOne，用于替换一个文档
 - v1.0.0  
   提供如下数据库操作方法：  
   getClient, close, findOne, find, insertOne, insertMany, updateOne, findOneAndUpdate, updateMany, deleteOne, deleteMany
