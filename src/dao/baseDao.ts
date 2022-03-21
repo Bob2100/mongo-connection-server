@@ -1,5 +1,6 @@
 import ora from 'ora'
 import {
+  CountDocumentsOptions,
   DeleteResult,
   Filter,
   FindOneAndUpdateOptions,
@@ -32,8 +33,21 @@ export default {
   deleteMany,
   drop,
   replaceOne,
+  countDocuments,
 }
 
+async function countDocuments<T>(
+  dbName: string,
+  colName: string,
+  filter?: Filter<T>,
+  options?: CountDocumentsOptions
+): Promise<number> {
+  const client = await getClient()
+  return await client
+    .db(dbName)
+    .collection(colName)
+    .countDocuments(filter, options)
+}
 async function drop(dbName: string, colName: string): Promise<boolean> {
   const client = await getClient()
   return await client.db(dbName).collection(colName).drop()

@@ -13,6 +13,14 @@ describe('baseDao', () => {
   after(() => {
     baseDao.close()
   })
+  describe('countDocuments()', () => {
+    const dbName = 'test'
+    const colName = 'fruits'
+    it('countDocuments() should return a number', async () => {
+      const res = await baseDao.countDocuments(dbName, colName)
+      assert.notStrictEqual(res, 0)
+    })
+  })
   describe('drop()', () => {
     const dbName = 'test'
     const colName = '_fruits'
