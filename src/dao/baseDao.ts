@@ -2,6 +2,7 @@ import ora from 'ora'
 import {
   CountDocumentsOptions,
   DeleteResult,
+  DistinctOptions,
   Filter,
   FindOneAndUpdateOptions,
   FindOptions,
@@ -34,6 +35,21 @@ export default {
   drop,
   replaceOne,
   countDocuments,
+  distinct,
+}
+
+async function distinct<T>(
+  dbName: string,
+  colName: string,
+  key: string,
+  filter?: Filter<T>,
+  options?: DistinctOptions
+): Promise<any[]> {
+  const client = await getClient()
+  return await client
+    .db(dbName)
+    .collection(colName)
+    .distinct(key, filter, options)
 }
 
 async function countDocuments<T>(
@@ -48,6 +64,7 @@ async function countDocuments<T>(
     .collection(colName)
     .countDocuments(filter, options)
 }
+
 async function drop(dbName: string, colName: string): Promise<boolean> {
   const client = await getClient()
   return await client.db(dbName).collection(colName).drop()

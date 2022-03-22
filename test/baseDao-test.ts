@@ -13,6 +13,14 @@ describe('baseDao', () => {
   after(() => {
     baseDao.close()
   })
+  describe('distinct()', () => {
+    const dbName = 'test'
+    const colName = 'fruits'
+    it('distinct() should return a array', async () => {
+      const res = await baseDao.distinct(dbName, colName, 'category')
+      assert.notStrictEqual(res, null)
+    })
+  })
   describe('countDocuments()', () => {
     const dbName = 'test'
     const colName = 'fruits'
