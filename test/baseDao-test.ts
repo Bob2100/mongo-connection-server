@@ -29,12 +29,12 @@ describe('baseDao', () => {
       assert.notStrictEqual(changeStream, null)
     })
   })
-  describe('distinct()', () => {
+  describe('command()', () => {
     const dbName = 'test'
     const command = {
       dbStats: 1,
     }
-    it('distinct() should return a array', async () => {
+    it('command() should not return null', async () => {
       const res = await baseDao.command(dbName, command)
       assert.notStrictEqual(res, null)
     })
