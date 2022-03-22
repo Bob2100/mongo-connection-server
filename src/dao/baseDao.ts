@@ -12,6 +12,7 @@ import {
   MongoClient,
   OptionalUnlessRequiredId,
   ReplaceOptions,
+  RunCommandOptions,
   UpdateFilter,
   UpdateOptions,
   UpdateResult,
@@ -36,6 +37,16 @@ export default {
   replaceOne,
   countDocuments,
   distinct,
+  command,
+}
+
+async function command(
+  dbName: string,
+  command: Document,
+  options?: RunCommandOptions
+): Promise<Document> {
+  const client = await getClient()
+  return await client.db(dbName).command(command, options)
 }
 
 async function distinct<T>(

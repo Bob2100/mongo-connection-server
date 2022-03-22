@@ -15,6 +15,16 @@ describe('baseDao', () => {
   })
   describe('distinct()', () => {
     const dbName = 'test'
+    const command = {
+      dbStats: 1,
+    }
+    it('distinct() should return a array', async () => {
+      const res = await baseDao.command(dbName, command)
+      assert.notStrictEqual(res, null)
+    })
+  })
+  describe('distinct()', () => {
+    const dbName = 'test'
     const colName = 'fruits'
     it('distinct() should return a array', async () => {
       const res = await baseDao.distinct(dbName, colName, 'category')
