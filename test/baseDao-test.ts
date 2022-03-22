@@ -161,7 +161,7 @@ describe('baseDao', () => {
     before(async () => {
       const docs = [
         {
-          name: '_葡萄',
+          name: '_葡萄1',
           category: '水果',
         },
         {
@@ -181,7 +181,7 @@ describe('baseDao', () => {
   describe('updateOne()', () => {
     let upsertRes = null
     const doc = {
-      name: '_苹果',
+      name: '_苹果1',
       category: '水果',
       price: 10,
     }
@@ -212,7 +212,7 @@ describe('baseDao', () => {
   describe('replaceOne()', () => {
     let updateRes = null
     const doc: Fruits = {
-      name: '_苹果',
+      name: '_苹果2',
       category: '水果',
       price: 10,
     }
@@ -237,7 +237,7 @@ describe('baseDao', () => {
   })
   describe('findOneAndUpdate()', () => {
     let insertRes = null
-    const query = { name: '_苹果' }
+    const query = { name: '_苹果3' }
     before(async () => {
       insertRes = await baseDao.insertOne('test', 'fruits', query)
     })
