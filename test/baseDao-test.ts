@@ -1,6 +1,11 @@
 import baseDao from '../src/dao/baseDao.js'
 import * as assert from 'assert'
-import { FindOneAndUpdateOptions, FindOptions, ObjectId } from 'mongodb'
+import {
+  ChangeStream,
+  FindOneAndUpdateOptions,
+  FindOptions,
+  ObjectId,
+} from 'mongodb'
 
 interface Fruits {
   _id?: ObjectId
@@ -12,6 +17,17 @@ interface Fruits {
 describe('baseDao', () => {
   after(() => {
     baseDao.close()
+  })
+  describe('watch()', () => {
+    const dbName = 'test'
+    let changeStream: ChangeStream = null
+    after(() => {
+      changeStream.close()
+    })
+    it('watch() should not return null', async () => {
+      changeStream = await baseDao.watch(dbName)
+      assert.notStrictEqual(changeStream, null)
+    })
   })
   describe('distinct()', () => {
     const dbName = 'test'

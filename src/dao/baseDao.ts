@@ -1,5 +1,7 @@
 import ora from 'ora'
 import {
+  ChangeStream,
+  ChangeStreamOptions,
   CountDocumentsOptions,
   DeleteResult,
   DistinctOptions,
@@ -38,6 +40,16 @@ export default {
   countDocuments,
   distinct,
   command,
+  watch,
+}
+
+async function watch<T>(
+  dbName: string,
+  pipeline?: Document[],
+  options?: ChangeStreamOptions
+): Promise<ChangeStream<T>> {
+  const client = await getClient()
+  return client.db(dbName).watch<T>(pipeline, options)
 }
 
 async function command(
